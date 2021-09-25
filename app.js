@@ -3,9 +3,6 @@ const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const path = require("path");
 
-
-
-
 const dbPath = path.join(__dirname, "cricketTeam.db");
 
 const app = express();
@@ -16,7 +13,7 @@ const initializeDbAndServer = async () => {
   try {
     db = await open({
       filename: dbPath,
-      driver: sqlite3.Database
+      driver: sqlite3.Database,
     });
     app.listen(3000, () => {
       console.log("Server running at http://localhost:3000/");
@@ -30,13 +27,12 @@ const initializeDbAndServer = async () => {
 initializeDbAndServer();
 
 const convertDbObjectToResponseObject = (dbObject) => {
-    return {
-        playerId : dbObject.player_id;
-        playerName : dbObject.playerName;
-        jerseyNumber : dbObject.jerseyNumber;
-        role : dbObject.role;
-
-    };
+  return {
+    playerId: dbObject.player_id,
+    playerName: dbObject.playerName,
+    jerseyNumber: dbObject.jerseyNumber,
+    role: dbObject.role,
+  };
 };
 
 //Get all players list
@@ -46,9 +42,8 @@ app.get("/players/", async (request, response) => {
 
   const arrayList = await db.all(getPlayersList);
   response.send(
-      arrayList.map((eachPlayer) => convertDbObjectToResponseObject(eachPlayer)
-       )
-      );
+    arrayList.map((eachPlayer) => convertDbObjectToResponseObject(eachPlayer))
+  );
 });
 
 //SELECT by specific ID
@@ -61,8 +56,7 @@ app.get("/players/:playerId)", async (request, response) => {
   response.send(convertDbObjectToResponseObject(arrayList));
 });
 
-
-//Adding new players 
+//Adding new players
 app.post("/players/", async (request, response) => {
   const { playerName, jerseyNumber, role } = request.body;
   const addedList = `INSERT INTO cricket_team 
@@ -72,9 +66,6 @@ app.post("/players/", async (request, response) => {
   await db.run(addedList);
   response.send("Player Added to  Team");
 });
-
-
-
 
 //Update API
 app.put("/players/:player_Id", async (request, response) => {
@@ -94,7 +85,6 @@ app.put("/players/:player_Id", async (request, response) => {
   await db.run(updatedPlayer);
   response.send("player details updated");
 });
-
 
 //DELETE API
 app.delete("/players/:player_Id", async (request, response) => {
