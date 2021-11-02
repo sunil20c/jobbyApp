@@ -1,0 +1,41 @@
+.job-list-item-container {
+  background-color: #272727;
+  margin-bottom: 6px;
+  width: 500px;
+  padding: 7px;
+  color: #f1f5f9;
+  list-style: none;
+  border-radius: 14px;
+}
+.top-main-container {
+  display: flex;
+}
+.location-employment-container {
+  display: flex;
+}
+.job-item-company-logo {
+  height: 75px;
+  width: 75px;
+}
+.location {
+  font-size: 16px;
+  font-family: 'Roboto';
+  margin-right: 6px;
+}
+.employment-type {
+  font-size: 16px;
+  font-family: 'Roboto';
+}
+.middle-line-container {
+  display: flex;
+}
+.package-container {
+  display: flex;
+  align-self: flex-end;
+}
+.package-per-annum {
+  font-family: 'Roboto';
+  font-size: 14px;
+  margin-left: 5px;
+  text-align: end;
+}
