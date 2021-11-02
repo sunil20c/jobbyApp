@@ -1,4 +1,5 @@
 {
+
   "name": "jobby-app",
   "private": true,
   "version": "1.0.0",
@@ -70,4 +71,18 @@
       "not ie < 11"
     ]
   }
+=======
+    "name": "cricket-team",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "4.17.1",
+        "nodemon": "2.0.7",
+        "sqlite": "4.0.19",
+        "sqlite3": "5.0.2"
+    }
+
 }

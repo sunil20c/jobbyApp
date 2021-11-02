@@ -1,3 +1,4 @@
+
 In this project, let's build a **Jobby App** by applying the concepts we have learned till now.
 
 ### Refer to videos below:
@@ -179,11 +180,55 @@ The app must have the following functionalities
 **loginApiUrl**
 
 #### API: `https://apis.ccbp.in/login`
+=======
+# Cricket Team
+
+Given two files `app.js` and a database file `cricketTeam.db` consisting a table `cricket_team`.
+
+Write APIs to perform operations on the table `cricket_team` containing the following columns,
+
+| Columns       | Type    |
+| ------------- | ------- |
+| player_id     | INTEGER |
+| player_name   | TEXT    |
+| jersey_number | INTEGER |
+| role          | TEXT    |
+
+### API 1
+
+#### Path: `/players/`
+
+#### Method: `GET`
+
+#### Description:
+
+Returns a list of all players in the team
+
+#### Response
+
+```
+[
+  {
+    playerId: 1,
+    playerName: "Lakshman",
+    jerseyNumber: 5,
+    role: "All-rounder"
+  },
+
+  ...
+]
+```
+
+### API 2
+
+#### Path: `/players/`
+>>>>>>> efd3a7e1d73af82ef5516de4f6b0883a326b9657
 
 #### Method: `POST`
 
 #### Description:
 
+<<<<<<< HEAD
 Returns a response based on the credentials provided
 
 #### Sample Success Response
@@ -230,11 +275,35 @@ Returns a response containing the profile details
 #### API: `https://apis.ccbp.in/jobs`
 
 #### Example: `https://apis.ccbp.in/jobs?employment_type=FULLTIME,PARTTIME&minimum_package=1000000&search=`
+=======
+Creates a new player in the team (database). `player_id` is auto-incremented
+
+#### Request
+
+```
+{
+  "playerName": "Vishal",
+  "jerseyNumber": 17,
+  "role": "Bowler"
+}
+```
+
+#### Response
+
+```
+Player Added to Team
+```
+
+### API 3
+
+#### Path: `/players/:playerId/`
+>>>>>>> efd3a7e1d73af82ef5516de4f6b0883a326b9657
 
 #### Method: `GET`
 
 #### Description:
 
+<<<<<<< HEAD
 Returns a response containing the list of all jobs
 
 #### Sample Response
@@ -420,3 +489,68 @@ Returns a response containing the job details
 > - Don't change the component folder names as those are the files being imported into the tests.
 > - **Do not remove the pre-filled code**
 > - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
+=======
+Returns a player based on a player ID
+
+#### Response
+
+```
+{
+  playerId: 1,
+  playerName: "Lakshman",
+  jerseyNumber: 5,
+  role: "All-rounder"
+}
+```
+
+### API 4
+
+#### Path: `/players/:playerId/`
+
+#### Method: `PUT`
+
+#### Description:
+
+Updates the details of a player in the team (database) based on the player ID
+
+#### Request
+
+```
+{
+  "playerName": "Maneesh",
+  "jerseyNumber": 54,
+  "role": "All-rounder"
+}
+```
+
+#### Response
+
+```
+Player Details Updated
+
+```
+
+### API 5
+
+#### Path: `/players/:playerId/`
+
+#### Method: `DELETE`
+
+#### Description:
+
+Deletes a player from the team (database) based on the player ID
+
+#### Response
+
+```
+Player Removed
+```
+
+<br/>
+
+Use `npm install` to install the packages.
+
+**Export the express instance using the default export syntax.**
+
+**Use Common JS module syntax.**
+
