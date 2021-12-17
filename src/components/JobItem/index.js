@@ -1,4 +1,7 @@
 import {Link} from 'react-router-dom'
+
+import {FaStar} from 'react-icons/fa'
+
 import './index.css'
 
 const JobItem = props => {
@@ -15,39 +18,34 @@ const JobItem = props => {
   } = jobDetails
   return (
     <li className="job-list-item-container">
-      <Link to={`/jobs/${id}`}>
+      <Link to={`/jobs/${id}`} className="link-style-container">
         <div className="top-main-container">
           <img
             src={companyLogoUrl}
             alt="company logo"
             className="job-item-company-logo"
           />
-
           <div className="top-center-container">
-            <p className="title">{title}</p>
+            <h1 className="title">{title}</h1>
             <div className="rating-container">
-              <img src="" alt="" className="star-image" />
+              <FaStar className="fa-star" />
               <p className="rating">{rating}</p>
             </div>
           </div>
         </div>
         <div className="middle-line-container">
-          <div className="location-employment-container">
-            <div className="location-container">
-              <p className="location">{location}</p>
-            </div>
-            <div className="employment-type-container">
-              <p className="employment-type">{employmentType}</p>
-            </div>
+          <div className="location-container">
+            <p className="location">{location}</p>
           </div>
-          <div className="package-container">
-            <p className="package-per-annum">{packagePerAnnum}</p>
+          <div className="employment-type-container">
+            <p className="employment-type">{employmentType}</p>
           </div>
+          <p className="package-per-annum">{packagePerAnnum}</p>
         </div>
         <hr className="horizontal-line" />
         <div className="job-item-bottom-container">
-          <p>Description</p>
-          <p>{jobDescription}</p>
+          <h1>Description</h1>
+          <p className="job-item-description">{jobDescription}</p>
         </div>
       </Link>
     </li>

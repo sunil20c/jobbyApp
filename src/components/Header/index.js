@@ -1,23 +1,28 @@
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import './index.css'
 
 const Header = props => {
   const onClickLogout = () => {
-    Cookies.remove('jwt_token')
     const {history} = props
+
+    Cookies.remove('jwt_token')
     history.replace('/login')
   }
 
   return (
     <nav className="header-container">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-        alt="website logo"
-        className="header-logo-image"
-      />
       <ul className="list-items-container">
+        <li>
+          <Link to="/" className="website-logo-image">
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+              alt="website logo"
+              className="header-logo-image"
+            />
+          </Link>
+        </li>
         <li>
           <Link to="/" className="list-item">
             Home
@@ -39,4 +44,4 @@ const Header = props => {
     </nav>
   )
 }
-export default Header
+export default withRouter(Header)

@@ -1508,6 +1508,14 @@ packages:
       node: '>=6.9.0'
     resolution:
       integrity: sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
+  /@babel/runtime/7.16.0:
+    dependencies:
+      regenerator-runtime: 0.13.9
+    dev: false
+    engines:
+      node: '>=6.9.0'
+    resolution:
+      integrity: sha512-Nht8L0O8YCktmsDV6FqFue7vQLRx3Hb0B37lS5y0jDRqRxlBG4wIJHnf9/bgSE2UyipKFA01YtS+npRdTWBUyw==
   /@babel/template/7.15.4:
     dependencies:
       '@babel/code-frame': 7.15.8
@@ -6308,10 +6316,10 @@ packages:
       integrity: sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
   /history/4.10.1:
     dependencies:
-      '@babel/runtime': 7.15.4
+      '@babel/runtime': 7.16.0
       loose-envify: 1.4.0
       resolve-pathname: 3.0.0
-      tiny-invariant: 1.1.0
+      tiny-invariant: 1.2.0
       tiny-warning: 1.0.3
       value-equal: 1.0.1
     dev: false
@@ -8361,7 +8369,7 @@ packages:
       integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==
   /mini-create-react-context/0.4.1_prop-types@15.7.2+react@17.0.1:
     dependencies:
-      '@babel/runtime': 7.15.4
+      '@babel/runtime': 7.16.0
       prop-types: 15.7.2
       react: 17.0.1
       tiny-warning: 1.0.3
@@ -10473,13 +10481,13 @@ packages:
       integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
   /react-router-dom/5.2.0_react@17.0.1:
     dependencies:
-      '@babel/runtime': 7.15.4
+      '@babel/runtime': 7.16.0
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.7.2
       react: 17.0.1
       react-router: 5.2.0_react@17.0.1
-      tiny-invariant: 1.1.0
+      tiny-invariant: 1.2.0
       tiny-warning: 1.0.3
     dev: false
     peerDependencies:
@@ -10488,7 +10496,7 @@ packages:
       integrity: sha512-gxAmfylo2QUjcwxI63RhQ5G85Qqt4voZpUXSEqCwykV0baaOTQDR1f0PmY8AELqIyVc0NEZUj0Gov5lNGcXgsA==
   /react-router/5.2.0_react@17.0.1:
     dependencies:
-      '@babel/runtime': 7.15.4
+      '@babel/runtime': 7.16.0
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
@@ -10497,7 +10505,7 @@ packages:
       prop-types: 15.7.2
       react: 17.0.1
       react-is: 16.13.1
-      tiny-invariant: 1.1.0
+      tiny-invariant: 1.2.0
       tiny-warning: 1.0.3
     dev: false
     peerDependencies:
@@ -12065,10 +12073,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
-  /tiny-invariant/1.1.0:
+  /tiny-invariant/1.2.0:
     dev: false
     resolution:
-      integrity: sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
+      integrity: sha512-1Uhn/aqw5C6RI4KejVeTg6mIS7IqxnLJ8Mv2tV5rTc0qWobay7pDUz6Wi392Cnc8ak1H0F2cjoRzb2/AW4+Fvg==
   /tiny-warning/1.0.3:
     dev: false
     resolution:

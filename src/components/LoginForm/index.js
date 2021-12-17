@@ -14,7 +14,6 @@ class LoginForm extends Component {
   }
 
   onFailure = errorMsg => {
-    console.log(errorMsg)
     this.setState({showSubmitError: true, errorMsg})
   }
 
@@ -32,7 +31,7 @@ class LoginForm extends Component {
     if (response.ok === true) {
       this.onSuccess(data.jwt_token)
     } else {
-      this.onFailure(data.error.msg)
+      this.onFailure(data.error_msg)
     }
   }
 
@@ -103,7 +102,7 @@ class LoginForm extends Component {
             <button type="submit" className="login-button">
               Login
             </button>
-            {showSubmitError && <p>{errorMsg}</p>}
+            {showSubmitError && <p className="error-msg">{errorMsg}</p>}
           </form>
         </div>
       </div>

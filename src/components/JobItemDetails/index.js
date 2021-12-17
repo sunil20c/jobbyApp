@@ -2,7 +2,11 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
+import {FaStar} from 'react-icons/fa'
+
 import Header from '../Header'
+
+import './index.css'
 
 const apiConstants = {
   initial: 'INITIAL',
@@ -14,7 +18,7 @@ const apiConstants = {
 class JobItemDetails extends Component {
   state = {
     apiStatus: apiConstants.initial,
-    activeJobId: '',
+
     selectedJobItemDetails: {},
     similarJobsList: [],
   }
@@ -45,11 +49,19 @@ class JobItemDetails extends Component {
     rating: eachJob.rating,
   })
 
+  renderLifeAtCompany = life => ({
+    description: life.description,
+    imageUrl: life.image_url,
+  })
+
   getJobItemDetails = async () => {
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
     const jwtToken = Cookies.get('jwt_token')
-    const {activeJobId} = this.state
+
     this.setState({apiStatus: apiConstants.inProgress})
-    const url = `https://apis.ccbp.in/jobs/${activeJobId}`
+    const url = `https://apis.ccbp.in/jobs/${id}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -57,34 +69,43 @@ class JobItemDetails extends Component {
       method: 'GET',
     }
     const response = await fetch(url, options)
+
     if (response.ok === true) {
       const data = await response.json()
-
-      /* const jobDetails = data.job_details */
-
-      const formattedResults = {
-        companyLogoUrl: data.company_logo_url,
-        companyWebsiteUrl: data.company_website_url,
-        employmentType: data.employment_type,
-        id: data.id,
-        jobDescription: data.job_description,
-        skills: data.skills,
-        lifeAtCompany: data.life_at_company,
-        location: data.location,
-        packagePerAnnum: data.package_per_annum,
-        rating: data.rating,
-        similarJobs: data.similar_jobs,
+      console.log(data)
+      const fetchedJobData = {
+        companyLogoUrl: data.job_details.company_logo_url,
+        companyWebsiteUrl: data.job_details.company_website_url,
+        employmentType: data.job_details.employment_type,
+        id: data.job_details.id,
+        skills: data.job_details.skills.map(eachSkill => ({
+          imageUrl: eachSkill.image_url,
+          name: eachSkill.name,
+        })),
+        title: data.job_details.title,
+        lifeAtCompany: this.renderLifeAtCompany(
+          data.job_details.life_at_company,
+        ),
+        jobDescription: data.job_details.job_description,
+        location: data.job_details.location,
+        packagePerAnnum: data.job_details.package_per_annum,
+        rating: data.job_details.rating,
       }
 
       this.setState({
-        selectedJobItemDetails: formattedResults,
-        similarJobsList: formattedResults.similarJobs,
-
+        selectedJobItemDetails: fetchedJobData,
+        similarJobsList: data.similar_jobs.map(eachSimilarJob =>
+          this.renderSimilarUpdated(eachSimilarJob),
+        ),
         apiStatus: apiConstants.success,
       })
     } else {
       this.setState({apiStatus: apiConstants.failure})
     }
+  }
+
+  onClickJobItemRetry = () => {
+    this.getJobItemDetails()
   }
 
   renderSimilarJob = eachSimilarJob => {
@@ -99,22 +120,25 @@ class JobItemDetails extends Component {
     return (
       <li className="similar-job-list-item-container">
         <div>
-          <div>
+          <div className="similar-logo-container">
             <img
               src={companyLogoUrl}
               alt="similar job company logo"
               className="similar-logo"
             />
-            <div>
+            <div className="similar-title-rating-container">
               <h1>{title}</h1>
-              <p>{rating}</p>
+              <div className="jb-rating-container">
+                <FaStar className="fa-star" />
+                <p>{rating}</p>
+              </div>
             </div>
           </div>
           <div className="similar-description-container">
-            <p>Description</p>
+            <h1>Description</h1>
             <p>{jobDescription}</p>
           </div>
-          <div>
+          <div className="similar-location-emp-type-container">
             <p>{location}</p>
             <p>{employmentType}</p>
           </div>
@@ -123,8 +147,18 @@ class JobItemDetails extends Component {
     )
   }
 
+  renderSkill = skill => {
+    const {imageUrl, name} = skill
+    return (
+      <li>
+        <img src={imageUrl} alt={name} className="skill-image" />
+        <p>{name}</p>
+      </li>
+    )
+  }
+
   renderSelectedJobItemSuccessView = () => {
-    const {selectedJobItemDetails} = this.state
+    const {selectedJobItemDetails, similarJobsList} = this.state
     const {
       companyLogoUrl,
       companyWebsiteUrl,
@@ -133,10 +167,14 @@ class JobItemDetails extends Component {
       location,
       employmentType,
       jobDescription,
+      skills,
+      lifeAtCompany,
+      title,
     } = selectedJobItemDetails
+
     return (
-      <div>
-        <div>
+      <div className="">
+        <div className="job-item-details-bg-container">
           <div className="main-top-container">
             <img
               src={companyLogoUrl}
@@ -144,29 +182,54 @@ class JobItemDetails extends Component {
               className="selected-company-logo"
             />
             <div className="rating-main-container">
-              <p>{rating}</p>
+              <h1 className="jid-heading">{title}</h1>
+              <div className="jb-rating-container">
+                <FaStar className="fa-star" />
+                <p className="jid-rating">{rating}</p>
+              </div>
             </div>
           </div>
           <div className="middle-line-bg-container">
             <div className="location-emp-type">
-              <p>{location}</p>
-              <p>{employmentType}</p>
+              <p className="jid-location">{location}</p>
+              <p className="jid-employment-type">{employmentType}</p>
             </div>
-            <p>{packagePerAnnum}</p>
+            <p className="jid-package">{packagePerAnnum}</p>
           </div>
           <hr className="horizontal-line" />
           <div className="description-container">
-            <h1>Description</h1>
-            <a href={companyWebsiteUrl}>Visit</a>
-            <p>{jobDescription}</p>
+            <div className="description-visit-container">
+              <h1 className="jid-heading">Description</h1>
+              <a href={companyWebsiteUrl}>Visit</a>
+            </div>
+            <p className="jid-job-description">{jobDescription}</p>
           </div>
           <div className="skills-bg-container">
-            <h1>Skills</h1>
+            <h1 className="jid-skills-heading">Skills</h1>
+            <ul className="skills-list-container">
+              {skills.map(skill => this.renderSkill(skill))}
+            </ul>
           </div>
           <div className="life-at-company-bg-container">
-            <h1>Life at Company</h1>
+            <h1 className="jid-life-heading">Life at Company</h1>
+            <div className="life-text-image-container">
+              <p className="jid-life-description">
+                {lifeAtCompany.description}
+              </p>
+              <img
+                src={lifeAtCompany.imageUrl}
+                alt="life at company"
+                className="life-image"
+              />
+            </div>
           </div>
         </div>
+        <h1 className="similar-jobs-heading">Similar Jobs</h1>
+        <ul className="similar-jobs-list-container">
+          {similarJobsList.map(eachSimilarJob =>
+            this.renderSimilarJob(eachSimilarJob),
+          )}
+        </ul>
       </div>
     )
   }
@@ -180,10 +243,15 @@ class JobItemDetails extends Component {
   renderFailureView = () => (
     <div>
       <img
-        src="https://assets.ccbp.in/frontend/react-js/failure-img.png "
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
         alt="failure view"
         className="selected-job-item-failure-image"
       />
+      <h1>Oops! Something Went Wrong</h1>
+      <p>We cannot seem to find the page you are looking for</p>
+      <button type="button" onClick={this.onClickJobItemRetry}>
+        Retry
+      </button>
     </div>
   )
 
@@ -202,19 +270,10 @@ class JobItemDetails extends Component {
   }
 
   render() {
-    const {similarJobsList} = this.state
     return (
-      <div>
+      <div className=" job-item-details-app-bg-container">
         <Header />
         <div>{this.renderJobItemDetails()}</div>
-        <div>
-          <h1>Similar Jobs</h1>
-          <ul>
-            {similarJobsList.map(eachSimilarJob =>
-              this.renderSimilarJob(eachSimilarJob),
-            )}
-          </ul>
-        </div>
       </div>
     )
   }

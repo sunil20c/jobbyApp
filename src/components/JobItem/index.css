@@ -7,6 +7,18 @@
   list-style: none;
   border-radius: 14px;
 }
+
+@media screen and (max-width: 767px) {
+  .job-list-item-container {
+    width: 90%;
+  }
+}
+
+.link-style-container {
+  text-decoration: none;
+  color: #ffffff;
+  font-family: 'Roboto';
+}
 .top-main-container {
   display: flex;
 }
@@ -17,6 +29,9 @@
   height: 75px;
   width: 75px;
 }
+.middle-line-container {
+  display: flex;
+}
 .location {
   font-size: 16px;
   font-family: 'Roboto';
@@ -26,16 +41,32 @@
   font-size: 16px;
   font-family: 'Roboto';
 }
-.middle-line-container {
-  display: flex;
-}
-.package-container {
-  display: flex;
-  align-self: flex-end;
-}
+
 .package-per-annum {
+  display: flex;
+  justify-content: flex-end;
   font-family: 'Roboto';
-  font-size: 14px;
+  font-size: 16px;
   margin-left: 5px;
   text-align: end;
+}
+.title {
+  font-family: 'Roboto';
+  font-size: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.fa-star {
+  color: gold;
+  margin-right: 5px;
 }

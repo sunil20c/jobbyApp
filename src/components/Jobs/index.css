@@ -6,6 +6,12 @@
 .jobs-main-bg-container {
   display: flex;
 }
+@media screen and (max-width: 767px) {
+  .jobs-main-bg-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .employment-type-list {
   color: #f1f5f9;
   font-family: 'Roboto';
@@ -17,6 +23,16 @@
   display: flex;
   flex-direction: column;
 }
+
+.jobs-left-side-container {
+  display: flex;
+  flex-direction: column;
+}
+.input-search-job-results-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .salary-type-list {
   color: #f1f5f9;
   font-family: 'Roboto';
@@ -34,7 +50,32 @@
 }
 .profile-view-container {
   background-image: Url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
   border-radius: 8px;
   padding: 5px;
   margin: 5px;
+}
+.profile-name {
+  font-family: 'Roboto';
+  font-size: 16px;
+}
+.profile-bio {
+  font-family: 'Roboto';
+  font-size: 16px;
+}
+.search-input-container {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.search-button {
+  background-color: #272727;
+}
+.search-input {
+  background-color: transparent;
+  color: #ffffff;
+}
+.search-icon {
+  color: #f1f5f9;
 }

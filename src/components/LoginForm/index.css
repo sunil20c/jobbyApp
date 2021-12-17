@@ -41,3 +41,8 @@
   border: 1px solid #64748b;
   margin-bottom: 5px;
 }
+.error-msg {
+  color: #ff0b37;
+  font-family: 'Roboto';
+  font-size: 10px;
+}
